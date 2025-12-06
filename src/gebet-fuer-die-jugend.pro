@@ -15,6 +15,6 @@ dass er fr[C]ei [G] von Irrtum w[Am]erde,
 die W[F]iderspenstigen l[G]eite, die [Am]Unglücklichen f[G6/H]ühre,
 die Gef[C]angenen befr[Dm]eie und die Achtlosen erw[E]ecke,
 so dass [Am]alle durch Dein Ged[Am/F]enken und Deinen L[Dm]obpreis gesegnet s[E]ind. (3x)
-Du b[Am]ist der Mächtige, der Kr[Am/F]aftvolle. [Dm] [E]
+Du b[Am]ist der M[Am/F]ächtige, der Kr[Dm]aftvolle. [E]
 ‘Abdu’l-Bah[Am]á :|| [Am/F  Dm  E]
 ‘Abdu’l-Bah[Am]á
