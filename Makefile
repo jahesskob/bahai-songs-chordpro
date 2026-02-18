@@ -56,16 +56,3 @@ copypro:
 .PHONY: archive
 archive:
 	tar -czvf $(OUTPUT_DIR)/bahai-songs-archive.tar.gz $(OUTPUT_DIR)/*.pdf $(OUTPUT_DIR)/*.pro
-
-.PHONY: sync
-sync:
-	uv run scripts/pull.py
-	uv run scripts/push.py
-
-.PHONY: push
-push:
-	./scripts/push.py
-
-.PHONY: pull
-pull:
-	./scripts/pull.py
