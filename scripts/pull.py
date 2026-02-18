@@ -6,33 +6,56 @@
 import os
 import requests
 import json
+import sys
 from dotenv import load_dotenv
-from utils import get_title, get_words, get_music, get_song_url
 
 # Load environment variables from a .env file in the parent directory
 dotenv_path = os.path.join(os.path.dirname(__file__), "..", ".env")
 load_dotenv(dotenv_path)
 
 CHORDPRO_DIR = "src"
+REST_API_BASE_URL = os.getenv("REST_API_BASE_URL")
+SHORT_URL = os.getenv("SHORT_URL")
 
-QUERY = """query {
-    allSongs {
-        title
-        description
-        slug
-        sources {
-            author
-        }
-        contributors {
-            name
-        }
-    }
-}"""
+if not REST_API_BASE_URL:
+    sys.exit("Missing required environment variable: REST_API_BASE_URL")
+if not SHORT_URL:
+    sys.exit("Missing required environment variable: SHORT_URL")
 
-r = requests.post(os.getenv("GRAPHQL_API_URL"), json={'query': QUERY})
-json_data = json.loads(r.text)
+list_url = "{base}/api/v0/songs".format(base=REST_API_BASE_URL.rstrip("/"))
+try:
+    r = requests.get(list_url, timeout=30)
+except requests.RequestException as exc:
+    sys.exit("REST request failed for {url}: {error}".format(url=list_url, error=exc))
+if not r.ok:
+    sys.exit(
+        "REST request failed for {url}: HTTP {status} - {body}".format(
+            url=list_url,
+            status=r.status_code,
+            body=r.text[:500],
+        )
+    )
 
-songs = { song['slug'] : song for song in json_data['data']['allSongs'] }
+try:
+    json_data = r.json()
+except json.JSONDecodeError:
+    sys.exit("Invalid JSON response from {url}".format(url=list_url))
+
+if "songs" not in json_data or not isinstance(json_data["songs"], list):
+    sys.exit(
+        "Invalid payload from {url}: expected a top-level 'songs' array".format(
+            url=list_url
+        )
+    )
+
+songs = {}
+for song in json_data["songs"]:
+    if not isinstance(song, dict):
+        sys.exit("Invalid payload from {url}: each item in 'songs' must be an object".format(url=list_url))
+    slug = song.get("slug")
+    if not slug:
+        sys.exit("Invalid payload from {url}: each song must include 'slug'".format(url=list_url))
+    songs[slug] = song
 
 def get_title(song):
     """Tite of song"""
@@ -40,38 +63,34 @@ def get_title(song):
 
 def get_words(song):
     """Authors of the text the song is based on"""
-    authors = [source['author'] for source in song['sources']]
-    authors = list(set([a for a in authors if a is not None]))  # in case there is multiple excerpts from the same author
-    authors.sort()
-    if len(authors) > 2:
-        return " & ".join([", ".join(authors[:-1]), authors[-1]])
-    return ' & '.join(authors)
+    return song["words"]
 
 def get_music(song):
     """Artists who intoned the text"""
-    artists = [contributor['name'] for contributor in song['contributors']]
-    artists = [a for a in artists if a is not None]
-    artists.sort()
-    if len(artists) == 0 and song['description']:
-        return song['description']
-    elif len(artists) > 2:
-        return " & ".join([", ".join(artists[:-1]), artists[-1]])
-    else:
-        return ' & '.join(artists)
+    return song["music"] or ""
 
 def get_song_url(song):
     """Get URL of song"""
-    return os.getenv("SHORT_URL") + song['slug']
+    return SHORT_URL + song['slug']
 
 chordpro_file_names = os.listdir(CHORDPRO_DIR)
 
 for file_name in chordpro_file_names:
     if not file_name.startswith("."):
         slug = file_name[:-4]
-        title = get_title(songs[slug])
-        words = get_words(songs[slug])
-        music = get_music(songs[slug])
-        song_url = get_song_url(songs[slug])
+        song = songs[slug]
+        missing_keys = [key for key in ["title", "words", "music", "slug"] if key not in song]
+        if missing_keys:
+            sys.exit(
+                "Invalid payload for slug '{slug}': missing key(s): {keys}".format(
+                    slug=slug,
+                    keys=", ".join(missing_keys),
+                )
+            )
+        title = get_title(song)
+        words = get_words(song)
+        music = get_music(song)
+        song_url = get_song_url(song)
         title_line = f"{{title: {title}}}\n"
         words_line = f"{{words: {words}}}\n"
         music_line = f"{{music: {music}}}\n"

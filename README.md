@@ -21,7 +21,7 @@ A collection of songs inspired by the Bahá'í writings in ChordPro notation
   - Empty public/ directory with `make clean`
 
 ## Updating song sheets with data from the bahá'í song project API
-Use `make pull` to update the source files with data from the bahá'í song project API at https://bahai-songs.vercel.app/api/graphql.
+Use `make pull` to update the source files with data from the bahá'í song project API at the Convex REST endpoint `${REST_API_BASE_URL}/api/v0/songs`.
 The matching of ChordPro source files with database records happens based on the file name.
 If a database record is found for a ChordPro source file, the script will add/update:
 - `{title: New Title}`
