@@ -1,6 +1,6 @@
 {title: Reaches of the Spirit}
 {words: ‘Abdu’l-Bahá}
-{music: Arshan Yeganegi & Sophie Jain}
+{music: Arshan Yeganegi, Sophie Jain}
 {song_url: https://bsp.app/reaches-of-the-spirit}
 
 [||:] [Am] [G] [F] [C] [:||]

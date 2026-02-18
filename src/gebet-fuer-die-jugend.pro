@@ -1,6 +1,6 @@
 {title: Gebet für die Jugend}
 {words: ‘Abdu’l-Bahá}
-{music: Bianca Friedmann, Jule Kropp & Katrin Modabber}
+{music: Bianca Friedmann, Jule Kropp, Katrin Modabber}
 {song_url: https://bsp.app/gebet-fuer-die-jugend}
 
 {c: Intro}

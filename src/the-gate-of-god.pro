@@ -1,6 +1,6 @@
 {title: The Gate of God}
 {words: The Báb}
-{music: Naim Zabihi, Negin Zabihi & Pascal Naim Schmidt}
+{music: Naim Zabihi, Negin Zabihi, Pascal Naim Schmidt}
 {song_url: https://bsp.app/the-gate-of-god}
 
 {c: Capo: III}

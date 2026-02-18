@@ -1,6 +1,6 @@
 {title: Apple of Mine Eye}
 {words: Bahá'u'lláh}
-{music: James Mohajer & Kyan}
+{music: James Mohajer, Kyan}
 {song_url: https://bsp.app/apple-of-mine-eye}
 
 {c: Capo: I}

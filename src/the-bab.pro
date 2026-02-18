@@ -1,6 +1,6 @@
 {title: The Báb}
 {words: The Báb}
-{music: Naim Zabihi, Negin Zabihi & Pascal Naim Schmidt}
+{music: Naim Zabihi, Negin Zabihi, Pascal Naim Schmidt}
 {song_url: https://bsp.app/the-bab}
 
 ||: I am the Pr[Cadd9]imal P[G]oint from wh[Em7]ich have b[D/F#]een

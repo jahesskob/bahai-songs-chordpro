@@ -1,6 +1,6 @@
 {title: Faith Is The Magnet}
 {words: ‘Abdu’l-Bahá}
-{music: Jonas Bruckmann, Marina Bruckmann & Rahá Poostchi}
+{music: Jonas Bruckmann, Marina Bruckmann, Rahá Poostchi}
 {song_url: https://bsp.app/faith-is-the-magnet}
 
 ||: [Dm]Faith is the magnet

@@ -1,6 +1,6 @@
 {title: O Man of Two Visions}
 {words: Bahá'u'lláh}
-{music: Farah Haji & Taiya Davidsen}
+{music: Farah Haji, Taiya Davidsen}
 {song_url: https://bsp.app/o-man-of-two-visions}
 
 {c: Capo: II}
