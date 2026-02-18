@@ -15,8 +15,12 @@ jobs:
         with:
           path: local
           key: perl-${{ steps.perl.outputs.perl-hash }}
+      - name: Install system dependencies for chordpro
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pkg-config libharfbuzz-dev
       - name: Install chordpro
-        run: cpm install chordpro
+        run: cpm install --show-build-log-on-failure chordpro
       - name: Install exiftool
         run: sudo apt install libimage-exiftool-perl -y
       - name: Cache md5 checksums
