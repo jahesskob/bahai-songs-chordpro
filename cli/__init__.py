@@ -1,0 +1,1 @@
+"""Bahai songs CLI package."""
