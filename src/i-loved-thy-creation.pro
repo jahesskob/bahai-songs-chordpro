@@ -1,5 +1,5 @@
 {title: I Loved Thy Creation}
-{words: Bahá'u'lláh}
+{words: Bahá’u’lláh}
 {music: Rafe Bundy}
 {song_url: https://bsp.app/i-loved-thy-creation}
 {define: Am/F# base-fret 1 frets 2 0 0 2 1 0}

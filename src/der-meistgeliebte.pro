@@ -1,5 +1,5 @@
 {title: Der Meistgeliebte}
-{words: Bahá'u'lláh}
+{words: Bahá’u’lláh}
 {music: Corinne Bahia, Levin Zendeh}
 {song_url: https://bsp.app/der-meistgeliebte}
 

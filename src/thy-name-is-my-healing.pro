@@ -1,5 +1,5 @@
 {title: Thy Name Is My Healing}
-{words: Bahá'u'lláh}
+{words: Bahá’u’lláh}
 {music: Adib Naghashian, Armita Khosravi}
 {song_url: https://bsp.app/thy-name-is-my-healing}
 

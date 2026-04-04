@@ -1,5 +1,5 @@
 {title: O Fire of the Worlds}
-{words: Bahá'u'lláh}
+{words: Bahá’u’lláh}
 {music: Max Weigert}
 {song_url: https://bsp.app/o-fire-of-the-worlds}
 

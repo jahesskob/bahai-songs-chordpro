@@ -1,5 +1,5 @@
 {title: Ein reines Herz}
-{words: Bahá'u'lláh}
+{words: Bahá’u’lláh}
 {music: Jakob Hess, S. Khamsi}
 {song_url: https://bsp.app/ein-reines-herz}
 

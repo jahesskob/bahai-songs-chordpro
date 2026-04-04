@@ -1,5 +1,5 @@
 {title: Selig ist wer seinen Bruder}
-{words: Bahá'u'lláh}
+{words: Bahá’u’lláh}
 {music: Chad Smith}
 {song_url: https://bsp.app/selig-ist-wer-seinen-bruder}
 

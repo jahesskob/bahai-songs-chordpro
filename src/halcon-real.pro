@@ -1,5 +1,5 @@
 {title: Halcón Real}
-{words: Bahá'u'lláh}
+{words: Bahá’u’lláh}
 {music: Medios para la Transformacion}
 {song_url: https://bsp.app/halcon-real}
 {c: Capo III}

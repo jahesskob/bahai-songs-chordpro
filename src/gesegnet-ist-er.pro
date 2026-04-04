@@ -1,5 +1,5 @@
 {title: Gesegnet ist Er}
-{words: Bahá'u'lláh}
+{words: Bahá’u’lláh}
 {music: Ruhi Camp, Germany}
 {song_url: https://bsp.app/gesegnet-ist-er}
 

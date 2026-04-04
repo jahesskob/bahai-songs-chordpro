@@ -1,5 +1,5 @@
 {title: Be Generous!}
-{words: Bahá'u'lláh}
+{words: Bahá’u’lláh}
 {music: Tanisha Raj}
 {song_url: https://bsp.app/be-generous}
 

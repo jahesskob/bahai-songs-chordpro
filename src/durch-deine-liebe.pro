@@ -1,5 +1,5 @@
 {title: Durch Deine Liebe}
-{words: Bahá'u'lláh}
+{words: Bahá’u’lláh}
 {music: Nadine Reyhani}
 {song_url: https://bsp.app/durch-deine-liebe}
 

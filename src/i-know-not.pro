@@ -1,5 +1,5 @@
 {title: I Know Not}
-{words: Bahá'u'lláh}
+{words: Bahá’u’lláh}
 {music: Bonnie Lisbeth}
 {song_url: https://bsp.app/i-know-not}
 {define: Cadd9 base-fret 1 frets 0 3 2 0 3 3}

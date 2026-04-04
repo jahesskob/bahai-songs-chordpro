@@ -1,5 +1,5 @@
 {title: Sorrow Not}
-{words: Bahá'u'lláh}
+{words: Bahá’u’lláh}
 {music: Maya Asdaghi}
 {song_url: https://bsp.app/sorrow-not-2}
 {define: chord1 base-fret 6 frets x 3 0 x 2 x}

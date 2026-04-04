@@ -1,5 +1,5 @@
 {title: Fasst Gottes Gewand}
-{words: Bahá'u'lláh}
+{words: Bahá’u’lláh}
 {music: }
 {song_url: https://bsp.app/fasst-gottes-gewand}
 

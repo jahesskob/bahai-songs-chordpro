@@ -1,5 +1,5 @@
 {title: Everlasting}
-{words: Bahá'u'lláh}
+{words: Bahá’u’lláh}
 {music: Dani Lutley, Mey Spiegel}
 {song_url: https://bsp.app/everlasting}
 

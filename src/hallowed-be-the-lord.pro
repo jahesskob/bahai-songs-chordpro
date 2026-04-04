@@ -1,5 +1,5 @@
 {title: Hallowed Be the Lord}
-{words: Bahá'u'lláh}
+{words: Bahá’u’lláh}
 {music: Gloria G.}
 {song_url: https://bsp.app/hallowed-be-the-lord}
 

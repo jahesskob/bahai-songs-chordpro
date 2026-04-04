@@ -1,5 +1,5 @@
 {title: Paradise of the Placeless}
-{words: Bahá'u'lláh}
+{words: Bahá’u’lláh}
 {music: The Hidden Words}
 {song_url: https://bsp.app/paradise-of-the-placeless}
 

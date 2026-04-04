@@ -1,5 +1,5 @@
 {title: Verily I Say}
-{words: Bahá'u'lláh}
+{words: Bahá’u’lláh}
 {music: Nadia Affolter, Nura Jones}
 {song_url: https://bsp.app/verily-i-say-2}
 

@@ -1,5 +1,5 @@
 {title: Immensity of Space}
-{words: Bahá'u'lláh}
+{words: Bahá’u’lláh}
 {music: Rowshan}
 {song_url: https://bsp.app/immensity-of-space}
 {define: Fmaj7 base-fret 0 frets x 3 3 2 1 0}

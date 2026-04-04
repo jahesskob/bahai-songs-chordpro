@@ -1,5 +1,5 @@
 {title: Mein Erster Rat}
-{words: Bahá'u'lláh}
+{words: Bahá’u’lláh}
 {music: Chad Smith}
 {song_url: https://bsp.app/mein-erster-rat}
 

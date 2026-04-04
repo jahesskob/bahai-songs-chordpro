@@ -1,5 +1,5 @@
 {title: Mirages}
-{words: Bahá'u'lláh}
+{words: Bahá’u’lláh}
 {music: Le Deun family}
 {song_url: https://bsp.app/mirages}
 

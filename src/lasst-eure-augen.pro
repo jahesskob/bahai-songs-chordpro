@@ -1,5 +1,5 @@
 {title: Lasst Eure Augen}
-{words: Bahá'u'lláh}
+{words: Bahá’u’lláh}
 {music: Ruhi Book 1 Study Circle, Vienna, Austria}
 {song_url: https://bsp.app/lasst-eure-augen}
 

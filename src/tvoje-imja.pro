@@ -1,5 +1,5 @@
 {title: Tvoje Imjá}
-{words: Bahá'u'lláh}
+{words: Bahá’u’lláh}
 {music: Jane Zubova, Jenia Poluektova, Raman Sinclair}
 {song_url: https://bsp.app/tvoje-imja}
 

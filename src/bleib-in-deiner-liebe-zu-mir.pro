@@ -1,5 +1,5 @@
 {title: Bleib in deiner Liebe zu Mir}
-{words: Bahá'u'lláh}
+{words: Bahá’u’lláh}
 {music: Alexander Dohe}
 {song_url: https://bsp.app/bleib-in-deiner-liebe-zu-mir}
 

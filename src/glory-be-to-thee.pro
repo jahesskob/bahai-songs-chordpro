@@ -1,5 +1,5 @@
 {title: Glory Be to Thee}
-{words: Bahá'u'lláh}
+{words: Bahá’u’lláh}
 {music: Maryam Hadji}
 {song_url: https://bsp.app/glory-be-to-thee}
 

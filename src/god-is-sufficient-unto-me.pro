@@ -1,5 +1,5 @@
 {title: God is Sufficient Unto Me}
-{words: Bahá'u'lláh}
+{words: Bahá’u’lláh}
 {music: }
 {song_url: https://bsp.app/god-is-sufficient-unto-me}
 

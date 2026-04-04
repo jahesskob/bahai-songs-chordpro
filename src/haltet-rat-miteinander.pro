@@ -1,5 +1,5 @@
 {title: Haltet Rat miteinander}
-{words: Bahá'u'lláh}
+{words: Bahá’u’lláh}
 {music: Children's Class Oberhaching, Germany}
 {song_url: https://bsp.app/haltet-rat-miteinander}
 

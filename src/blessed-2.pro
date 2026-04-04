@@ -1,5 +1,5 @@
 {title: Blessed}
-{words: Bahá'u'lláh}
+{words: Bahá’u’lláh}
 {music: Elizabeth Hahn, Gloria G.}
 {song_url: https://bsp.app/blessed-2}
 

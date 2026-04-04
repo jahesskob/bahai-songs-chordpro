@@ -1,5 +1,5 @@
 {title: O Immortal Phoenix}
-{words: Bahá'u'lláh}
+{words: Bahá’u’lláh}
 {music: Alexis Semple, Rosalynd Koch, Sheyda Peyman}
 {song_url: https://bsp.app/o-immortal-phoenix}
 

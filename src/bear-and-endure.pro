@@ -1,5 +1,5 @@
 {title: Bear and Endure}
-{words: Bahá'u'lláh}
+{words: Bahá’u’lláh}
 {music: Bonnie Lisbeth}
 {song_url: https://bsp.app/bear-and-endure}
 

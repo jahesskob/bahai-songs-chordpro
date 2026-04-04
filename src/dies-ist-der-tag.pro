@@ -1,5 +1,5 @@
 {title: Dies ist der Tag}
-{words: Bahá'u'lláh}
+{words: Bahá’u’lláh}
 {music: Alexander Riedesser, Catharina Klietz}
 {song_url: https://bsp.app/dies-ist-der-tag}
 

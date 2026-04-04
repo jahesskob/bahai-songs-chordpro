@@ -1,5 +1,5 @@
 {title: Ljubiš li Me}
-{words: Bahá'u'lláh}
+{words: Bahá’u’lláh}
 {music: Ritika Ghose}
 {song_url: https://bsp.app/ljubis-li-me}
 

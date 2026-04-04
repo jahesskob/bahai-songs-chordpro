@@ -1,5 +1,5 @@
 {title: Frohlocke vor Herzensfreude}
-{words: Bahá'u'lláh}
+{words: Bahá’u’lláh}
 {music: Nadine Reyhani}
 {song_url: https://bsp.app/frohlocke-vor-herzensfreude}
 {define: Cadd9 base-fret 1 frets x 3 2 0 3 3}
