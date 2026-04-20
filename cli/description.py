@@ -175,10 +175,11 @@ def _render_song_sheet(song_path: Path) -> str:
 @app.command("generate")
 def generate(
     slug: str = typer.Option(..., "--slug", help="Generate a description for a single song slug."),
+    prod: bool = typer.Option(False, "--prod", help="Use the production Convex endpoint."),
 ) -> None:
     """Generate description text for a song."""
     try:
-        settings = load_settings()
+        settings = load_settings(prod=prod)
         client = SongApiClient(settings.rest_api_base_url)
         song = client.fetch_song(slug)
         _validate_song(song, slug)

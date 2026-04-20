@@ -1,21 +1,24 @@
 from __future__ import annotations
 
-import os
+import json
+import re
 from dataclasses import dataclass
 from pathlib import Path
-
-from dotenv import load_dotenv
+from typing import Any
 
 
 PACKAGE_ROOT = Path(__file__).resolve().parent.parent
+DEFAULT_SHORT_URL = "https://www.bahaisongproject.com/"
 
 
 @dataclass(frozen=True)
 class Settings:
     root_dir: Path
+    site_url: str
     rest_api_base_url: str
     short_url: str
     src_dir: Path
+    song_sheet_update_secret: str | None
 
 
 def _find_workspace_root() -> Path:
@@ -34,19 +37,123 @@ def _find_workspace_root() -> Path:
     return cwd
 
 
-def load_settings() -> Settings:
+def _strip_jsonc_comments(content: str) -> str:
+    result: list[str] = []
+    index = 0
+    in_string = False
+    escape = False
+
+    while index < len(content):
+        char = content[index]
+        next_char = content[index + 1] if index + 1 < len(content) else ""
+
+        if in_string:
+            result.append(char)
+            if escape:
+                escape = False
+            elif char == "\\":
+                escape = True
+            elif char == '"':
+                in_string = False
+            index += 1
+            continue
+
+        if char == '"':
+            in_string = True
+            result.append(char)
+            index += 1
+            continue
+
+        if char == "/" and next_char == "/":
+            index += 2
+            while index < len(content) and content[index] not in "\r\n":
+                index += 1
+            continue
+
+        if char == "/" and next_char == "*":
+            index += 2
+            while index + 1 < len(content) and content[index : index + 2] != "*/":
+                index += 1
+            index += 2
+            continue
+
+        result.append(char)
+        index += 1
+
+    without_comments = "".join(result)
+    return re.sub(r",(\s*[}\]])", r"\1", without_comments)
+
+
+def _config_paths() -> tuple[Path, Path]:
+    config_dir = Path.home() / ".bsp"
+    return (config_dir / "bsp.jsonc", config_dir / "bsp.json")
+
+
+def _load_user_config() -> dict[str, Any]:
+    config_path = next((path for path in _config_paths() if path.exists()), None)
+    if config_path is None:
+        return {}
+
+    try:
+        content = config_path.read_text(encoding="utf-8")
+        if config_path.suffix == ".jsonc":
+            content = _strip_jsonc_comments(content)
+        payload = json.loads(content)
+    except json.JSONDecodeError as exc:
+        raise ValueError(f"Invalid JSON in {config_path}: {exc}") from exc
+
+    if not isinstance(payload, dict):
+        raise ValueError(f"Invalid config in {config_path}: expected a JSON object")
+    return payload
+
+
+def _get_env_config(config: dict[str, Any], env_name: str) -> dict[str, Any]:
+    env_config = config.get(env_name, {})
+    if env_config is None:
+        return {}
+    if not isinstance(env_config, dict):
+        raise ValueError(f"Invalid BSP config: '{env_name}' must be an object")
+    return env_config
+
+
+def _get_config_string(config: dict[str, Any], *keys: str) -> str | None:
+    for key in keys:
+        value = config.get(key)
+        if value is not None:
+            if not isinstance(value, str):
+                raise ValueError(f"Invalid BSP config: '{key}' must be a string")
+            return value
+    return None
+
+
+def load_settings(prod: bool = False) -> Settings:
     root_dir = _find_workspace_root()
-    load_dotenv(root_dir / ".env")
 
-    rest_api_base_url = os.getenv("REST_API_BASE_URL")
-    if not rest_api_base_url:
-        raise ValueError("Missing required environment variable: REST_API_BASE_URL")
+    user_config = _load_user_config()
+    env_name = "prod" if prod else "dev"
+    env_config = _get_env_config(user_config, env_name)
 
-    short_url = os.getenv("SHORT_URL") or "https://www.bahaisongproject.com/"
+    configured_site_url = _get_config_string(env_config, "baseUrl", "base_url", "siteUrl", "site_url")
+    if not configured_site_url:
+        raise ValueError(
+            "Missing baseUrl for '{env}' in ~/.bsp/bsp.jsonc or ~/.bsp/bsp.json".format(
+                env=env_name
+            )
+        )
+
+    configured_secret = _get_config_string(
+        env_config,
+        "songSheetUpdateSecret",
+        "song_sheet_update_secret",
+        "secret",
+    )
+    short_url = _get_config_string(env_config, "shortUrl", "short_url") or DEFAULT_SHORT_URL
 
     return Settings(
         root_dir=root_dir,
-        rest_api_base_url=rest_api_base_url.rstrip("/"),
+        site_url=configured_site_url.rstrip("/"),
+        rest_api_base_url=configured_site_url.rstrip("/"),
         short_url=short_url,
         src_dir=root_dir / "src",
+        song_sheet_update_secret=configured_secret,
     )

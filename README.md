@@ -22,7 +22,7 @@ A collection of songs inspired by the Bahá'í writings in ChordPro notation
   - Empty public/ directory with `make clean`
 
 ## Updating song sheets with data from the bahá'í song project API
-Use `bsp sheet enrich --all` to update local source files with data from the bahá'í song project API at `${REST_API_BASE_URL}/api/v0/songs`.
+Use `bsp sheet enrich --all` to update local source files with data from the bahá'í song project API.
 The matching of ChordPro source files with database records happens based on the file name.
 If a database record is found for a ChordPro source file, the script will add/update:
 - `{title: New Title}`
@@ -31,6 +31,27 @@ If a database record is found for a ChordPro source file, the script will add/up
 - `{song_url: https://...}` (for creating a link to the song in the footer)
 
 Use `bsp sheet enrich --slug some-song --dry-run` to preview the changes for a single song.
+
+Use `bsp sheet upload --slug some-song` to update the database sheet from a local ChordPro file. Use `bsp sheet upload --all` to upload every file in `src/`.
+
+The CLI uses the `dev` config by default. Pass `--prod` to use the `prod` config for any command that talks to Convex.
+
+Configure local endpoints and upload secrets in `~/.bsp/bsp.jsonc` or `~/.bsp/bsp.json`:
+
+```jsonc
+{
+  "dev": {
+    "baseUrl": "https://your-dev.convex.site",
+    "songSheetUpdateSecret": "dev-secret"
+  },
+  "prod": {
+    "baseUrl": "https://your-prod.convex.site",
+    "songSheetUpdateSecret": "prod-secret"
+  }
+}
+```
+
+The upload command requires `songSheetUpdateSecret` for the selected environment.
 
 Use `bsp description generate --slug some-song` to print the current description text for a song.
 

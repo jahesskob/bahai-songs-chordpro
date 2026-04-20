@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 from typing import Any
+from urllib.parse import quote
 
 import requests
 
@@ -67,3 +68,42 @@ class SongApiClient:
         if not isinstance(payload, dict):
             raise ApiError(f"Invalid payload from {url}: expected a JSON object")
         return payload
+
+
+class SheetUploadClient:
+    def __init__(self, site_url: str, secret: str) -> None:
+        self.site_url = site_url.rstrip("/")
+        self.secret = secret
+
+    def upload_sheet(self, slug: str, sheet: str) -> None:
+        encoded_slug = quote(slug, safe="")
+        url = f"{self.site_url}/api/v0/songs/{encoded_slug}/sheet"
+
+        try:
+            response = requests.put(
+                url,
+                headers={
+                    "Authorization": f"Bearer {self.secret}",
+                    "Content-Type": "application/json",
+                },
+                json={"sheet": sheet},
+                timeout=30,
+            )
+        except requests.RequestException as exc:
+            raise ApiError(f"REST request failed for {url}: {exc}") from exc
+
+        if response.status_code == 204:
+            return
+
+        error = self._extract_error(response)
+        raise ApiError(error)
+
+    def _extract_error(self, response: requests.Response) -> str:
+        try:
+            payload = response.json()
+        except ValueError:
+            return f"HTTP {response.status_code} - {response.text[:500]}"
+
+        if isinstance(payload, dict) and isinstance(payload.get("error"), str):
+            return payload["error"]
+        return f"HTTP {response.status_code} - {response.text[:500]}"
