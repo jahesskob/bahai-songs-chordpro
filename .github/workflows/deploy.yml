@@ -6,6 +6,30 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+      - name: Checkout BSP CLI repository
+        uses: actions/checkout@v4
+        with:
+          repository: daysm/bahai-songs
+          path: bahai-songs
+          ssh-key: ${{ secrets.BAHAI_SONGS_DEPLOY_KEY }}
+          persist-credentials: false
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+      - name: Install bsp CLI
+        working-directory: bahai-songs
+        run: |
+          bun install --frozen-lockfile
+          bun run cli:install
+      - name: Check sheet enrichment
+        env:
+          BSP_CHORDPRO_DIR: ${{ github.workspace }}/src
+          BSP_CONVEX_URL: ${{ secrets.BSP_CONVEX_URL }}
+        run: bsp sheets enrich --all --check
+      - name: Check sheet upload sync
+        env:
+          BSP_CHORDPRO_DIR: ${{ github.workspace }}/src
+          BSP_CONVEX_URL: ${{ secrets.BSP_CONVEX_URL }}
+        run: bsp sheets upload --all --check
       - name: Setup Perl
         uses: shogo82148/actions-setup-perl@v1
         with:
