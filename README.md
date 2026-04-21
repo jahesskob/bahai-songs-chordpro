@@ -28,7 +28,7 @@ If a database record is found for a ChordPro source file, the script will add/up
 - `{title: New Title}`
 - `{music: Composer A, Composer B & Composer C}`
 - `{words: Author A, Author B & Author C}`
-- `{song_url: https://...}` (for creating a link to the song in the footer)
+- `{song_url: https://bsp.app/...}` (for creating a link to the song in the footer)
 
 Use `bsp sheet enrich --slug some-song --dry-run` to preview the changes for a single song.
 
@@ -42,6 +42,7 @@ Configure local endpoints and upload secrets in `~/.bsp/bsp.jsonc` or `~/.bsp/bs
 {
   "dev": {
     "baseUrl": "https://your-dev.convex.site",
+    "shortUrl": "https://bsp.app/",
     "songSheetUpdateSecret": "dev-secret"
   },
   "prod": {

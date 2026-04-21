@@ -8,7 +8,7 @@ from typing import Any
 
 
 PACKAGE_ROOT = Path(__file__).resolve().parent.parent
-DEFAULT_SHORT_URL = "https://www.bahaisongproject.com/"
+DEFAULT_SHORT_URL = "https://bsp.app/"
 
 
 @dataclass(frozen=True)
