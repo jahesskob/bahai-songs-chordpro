@@ -116,13 +116,12 @@ def _get_env_config(config: dict[str, Any], env_name: str) -> dict[str, Any]:
     return env_config
 
 
-def _get_config_string(config: dict[str, Any], *keys: str) -> str | None:
-    for key in keys:
-        value = config.get(key)
-        if value is not None:
-            if not isinstance(value, str):
-                raise ValueError(f"Invalid BSP config: '{key}' must be a string")
-            return value
+def _get_config_string(config: dict[str, Any], key: str) -> str | None:
+    value = config.get(key)
+    if value is not None:
+        if not isinstance(value, str):
+            raise ValueError(f"Invalid BSP config: '{key}' must be a string")
+        return value
     return None
 
 
@@ -140,7 +139,7 @@ def load_settings(prod: bool = False) -> Settings:
     env_name = "prod" if prod else "dev"
     env_config = _get_env_config(user_config, env_name)
 
-    configured_site_url = _get_config_string(env_config, "baseUrl", "base_url", "siteUrl", "site_url")
+    configured_site_url = _get_config_string(env_config, "baseUrl")
     if not configured_site_url:
         raise ValueError(
             "Missing baseUrl for '{env}' in ~/.bsp/bsp.jsonc or ~/.bsp/bsp.json".format(
@@ -148,24 +147,14 @@ def load_settings(prod: bool = False) -> Settings:
             )
         )
 
-    configured_secret = _get_config_string(
-        env_config,
-        "songSheetUpdateSecret",
-        "song_sheet_update_secret",
-        "secret",
-    )
-    configured_chordpro_dir = _get_config_string(
-        user_config,
-        "chordproDir",
-        "chordpro_dir",
-        "chordProDir",
-    )
+    configured_secret = _get_config_string(env_config, "songSheetUpdateSecret")
+    configured_chordpro_dir = _get_config_string(user_config, "chordproDir")
     if not configured_chordpro_dir:
         raise ValueError(
             "Missing top-level chordproDir in ~/.bsp/bsp.jsonc or ~/.bsp/bsp.json"
         )
 
-    short_url = _get_config_string(env_config, "shortUrl", "short_url") or DEFAULT_SHORT_URL
+    short_url = _get_config_string(env_config, "shortUrl") or DEFAULT_SHORT_URL
 
     return Settings(
         root_dir=root_dir,
