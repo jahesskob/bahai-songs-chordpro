@@ -17,7 +17,7 @@ class Settings:
     site_url: str
     rest_api_base_url: str
     short_url: str
-    src_dir: Path
+    chordpro_dir: Path
     song_sheet_update_secret: str | None
 
 
@@ -126,6 +126,13 @@ def _get_config_string(config: dict[str, Any], *keys: str) -> str | None:
     return None
 
 
+def _resolve_config_path(root_dir: Path, value: str) -> Path:
+    path = Path(value).expanduser()
+    if path.is_absolute():
+        return path
+    return root_dir / path
+
+
 def load_settings(prod: bool = False) -> Settings:
     root_dir = _find_workspace_root()
 
@@ -147,6 +154,17 @@ def load_settings(prod: bool = False) -> Settings:
         "song_sheet_update_secret",
         "secret",
     )
+    configured_chordpro_dir = _get_config_string(
+        user_config,
+        "chordproDir",
+        "chordpro_dir",
+        "chordProDir",
+    )
+    if not configured_chordpro_dir:
+        raise ValueError(
+            "Missing top-level chordproDir in ~/.bsp/bsp.jsonc or ~/.bsp/bsp.json"
+        )
+
     short_url = _get_config_string(env_config, "shortUrl", "short_url") or DEFAULT_SHORT_URL
 
     return Settings(
@@ -154,6 +172,6 @@ def load_settings(prod: bool = False) -> Settings:
         site_url=configured_site_url.rstrip("/"),
         rest_api_base_url=configured_site_url.rstrip("/"),
         short_url=short_url,
-        src_dir=root_dir / "src",
+        chordpro_dir=_resolve_config_path(root_dir, configured_chordpro_dir),
         song_sheet_update_secret=configured_secret,
     )

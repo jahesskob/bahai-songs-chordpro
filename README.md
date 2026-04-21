@@ -32,7 +32,7 @@ If a database record is found for a ChordPro source file, the script will add/up
 
 Use `bsp sheet enrich --slug some-song --dry-run` to preview the changes for a single song.
 
-Use `bsp sheet upload --slug some-song` to update the database sheet from a local ChordPro file. Use `bsp sheet upload --all` to upload every file in `src/`.
+Use `bsp sheet upload --slug some-song` to update the database sheet from a local ChordPro file. Use `bsp sheet upload --all` to upload every file in the configured ChordPro directory.
 
 The CLI uses the `dev` config by default. Pass `--prod` to use the `prod` config for any command that talks to Convex.
 
@@ -40,6 +40,7 @@ Configure local endpoints and upload secrets in `~/.bsp/bsp.jsonc` or `~/.bsp/bs
 
 ```jsonc
 {
+  "chordproDir": "/absolute/path/to/bahai-songs-chordpro/src",
   "dev": {
     "baseUrl": "https://your-dev.convex.site",
     "shortUrl": "https://bsp.app/",
@@ -52,7 +53,7 @@ Configure local endpoints and upload secrets in `~/.bsp/bsp.jsonc` or `~/.bsp/bs
 }
 ```
 
-The upload command requires `songSheetUpdateSecret` for the selected environment.
+Top-level `chordproDir` is required. Relative paths are resolved from the repository root, but an absolute path lets you run the CLI from anywhere. The upload command also requires `songSheetUpdateSecret`.
 
 Use `bsp description generate --slug some-song` to print the current description text for a song.
 

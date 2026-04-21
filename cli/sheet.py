@@ -56,7 +56,7 @@ def enrich(
         raise typer.Exit(code=1) from exc
 
     if slug:
-        sheet_path = settings.src_dir / f"{slug}.pro"
+        sheet_path = settings.chordpro_dir / f"{slug}.pro"
         if not sheet_path.exists():
             typer.echo(f"Local song sheet not found: {sheet_path}", err=True)
             raise typer.Exit(code=1)
@@ -75,7 +75,7 @@ def enrich(
 
     warnings: list[str] = []
     changed_count = 0
-    for sheet_path in sorted(settings.src_dir.glob("*.pro")):
+    for sheet_path in sorted(settings.chordpro_dir.glob("*.pro")):
         song_slug = sheet_path.stem
         song = remote_songs.get(song_slug)
         if song is None:
@@ -137,9 +137,9 @@ def upload(
         raise typer.Exit(code=1) from exc
 
     if slug:
-        targets = [settings.src_dir / f"{slug}.pro"]
+        targets = [settings.chordpro_dir / f"{slug}.pro"]
     else:
-        targets = sorted(settings.src_dir.glob("*.pro"))
+        targets = sorted(settings.chordpro_dir.glob("*.pro"))
 
     if not dry_run and not settings.song_sheet_update_secret:
         typer.echo(

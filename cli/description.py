@@ -184,7 +184,7 @@ def generate(
         song = client.fetch_song(slug)
         _validate_song(song, slug)
         excerpts = _normalize_excerpts(song, slug)
-        lyrics = _render_song_sheet(settings.src_dir / f"{slug}.pro")
+        lyrics = _render_song_sheet(settings.chordpro_dir / f"{slug}.pro")
     except (ApiError, ValueError, FileNotFoundError, RuntimeError, KeyError) as exc:
         typer.echo(str(exc), err=True)
         raise typer.Exit(code=1) from exc
