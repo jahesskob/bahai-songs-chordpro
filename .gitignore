@@ -8,15 +8,6 @@
 ## temporary file
 src/songbook.txt
 
-## pycache
-**/__pycache__
-*.egg-info/
-build/
-dist/
-.pytest_cache/
-.mypy_cache/
-uv.lock
-
 ## PDF output
 public/
 .md5/
